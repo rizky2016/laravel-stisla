@@ -1,6 +1,66 @@
 "use strict";
 
-$("#modal-1").fireModal({body: 'Modal body text goes here.'});
+$("#modal-1").fireModal({
+  body: $("#modal-p-part"),
+  onFormSubmit: function(modal, e, form) {
+    // Form Data
+    let form_data = $(e.target).serialize();
+    console.log(form_data)
+
+    // DO AJAX HERE
+    let fake_ajax = setTimeout(function() {
+      form.stopProgress();
+      modal.find('.modal-body').prepend('<div class="alert alert-info">Please check your browser console</div>')
+
+      clearInterval(fake_ajax);
+    }, 1500);
+
+    e.preventDefault();
+  },
+  shown: function(modal, form) {
+    console.log(form)
+  },
+  buttons: [
+    {
+      text: 'Login',
+      submit: true,
+      class: 'btn btn-primary btn-shadow',
+      handler: function(modal) {
+      }
+    }
+  ]
+});
+
+$("#modal-11").fireModal({
+  body: $("#modal-f-part"),
+  onFormSubmit: function(modal, e, form) {
+    // Form Data
+    let form_data = $(e.target).serialize();
+    console.log(form_data)
+
+    // DO AJAX HERE
+    let fake_ajax = setTimeout(function() {
+      form.stopProgress();
+      modal.find('.modal-body').prepend('<div class="alert alert-info">Please check your browser console</div>')
+
+      clearInterval(fake_ajax);
+    }, 1500);
+
+    e.preventDefault();
+  },
+  shown: function(modal, form) {
+    console.log(form)
+  },
+  buttons: [
+    {
+      text: 'Login',
+      submit: true,
+      class: 'btn btn-primary btn-shadow',
+      handler: function(modal) {
+      }
+    }
+  ]
+});
 $("#modal-2").fireModal({body: 'Modal body text goes here.', center: true});
 
 let modal_3_body = '<p>Object to create a button on the modal.</p><pre class="language-javascript"><code>';
@@ -94,5 +154,5 @@ $("#modal-6").fireModal({
 
 $('.oh-my-modal').fireModal({
   title: 'My Modal',
-  body: 'This is cool plugin!'
+  body: 'This is cool plugin!'
 });
